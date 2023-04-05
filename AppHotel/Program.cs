@@ -99,7 +99,33 @@ namespace AppHotel
                                                         Console.WriteLine("\nAnda tidak memiliki " + "akses untuk menambah data");
                                                     }
                                                 }
-
+                                                break;
+                                            case '3':
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine("Masukkan data yang anda ingin hapus");
+                                                    Console.WriteLine("Masukkan Id_Pelanggan:");
+                                                    string id_pelanggan = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan Nama Pelanggan :");
+                                                    string nama_pelanggan = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan No. Telp :");
+                                                    string tlp_pelanggan = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan jenis kelamin (L/P) :");
+                                                    string jk = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan No. Kamar :");
+                                                    string no_kamar = Console.ReadLine();
+                                                    try
+                                                    {
+                                                        PR.delete(id_pelanggan, nama_pelanggan, tlp_pelanggan, jk, no_kamar, conn);
+                                                        conn.Close();
+                                                    }
+                                                    catch
+                                                    {
+                                                        Console.WriteLine("\nAnda tidak memiliki " + "akses untuk menghapus data");
+                                                    }
+                                                }
+                                                break;
+                                            
                                         }
                                     }
                                     catch
