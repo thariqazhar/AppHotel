@@ -177,6 +177,24 @@ namespace AppHotel
             dcmd.ExecuteNonQuery();
             Console.WriteLine("Data Berhasil Dihapus");
         }
+
+        public void insert(string id_pelanggan, string nama_pelanggan, string tlp_pelanggan, string jk, string no_kamar,
+            SqlConnection con)
+        {
+            string str = "";
+            str = "insert into pelanggan (id_pelanggan,nama_pelanggan,tlp_pelanggan,jenis_kelamin,no_kamar)"
+                + "values(@id,@nma,@tlp,@jk,@kmr)";
+            SqlCommand cmd = new SqlCommand(str, con);
+            cmd.CommandType = CommandType.Text;
+
+            cmd.Parameters.Add(new SqlParameter("id", id_pelanggan));
+            cmd.Parameters.Add(new SqlParameter("nma", nama_pelanggan));
+            cmd.Parameters.Add(new SqlParameter("tlp", tlp_pelanggan));
+            cmd.Parameters.Add(new SqlParameter("jk", jk));
+            cmd.Parameters.Add(new SqlParameter("kmr", no_kamar));
+            cmd.ExecuteNonQuery();
+            Console.WriteLine("Data Berhasil Ditambahkan");
+        }
     }
 }
 
