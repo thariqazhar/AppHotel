@@ -125,7 +125,15 @@ namespace AppHotel
                                                     }
                                                 }
                                                 break;
-                                            
+                                            case '4':
+                                                conn.Close();
+                                                return;
+                                            default:
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine("\nInvalid option");
+                                                }
+                                                break;
                                         }
                                     }
                                     catch
