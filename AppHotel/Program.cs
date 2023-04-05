@@ -158,6 +158,25 @@ namespace AppHotel
                 }
             }
         }
+
+        public void delete(string id_pelanggan, string nama_pelanggan, string tlp_pelanggan, string jk, string no_kamar,
+            SqlConnection con)
+        {
+            SqlCommand cmd = new SqlCommand("Delete * From pelanggan", con);
+            string str = "";
+            str = "insert into pelanggan (id_pelanggan,nama_pelanggan,tlp_pelanggan,jenis_kelamin,no_kamar)"
+                + "values(@id,@nma,@tlp,@jk,@kmr)";
+            SqlCommand dcmd = new SqlCommand(str, con);
+            dcmd.CommandType = CommandType.Text;
+
+            dcmd.Parameters.Remove(new SqlParameter("id", id_pelanggan));
+            dcmd.Parameters.Remove(new SqlParameter("nma", nama_pelanggan));
+            dcmd.Parameters.Remove(new SqlParameter("tlp", tlp_pelanggan));
+            dcmd.Parameters.Remove(new SqlParameter("jk", jk));
+            dcmd.Parameters.Remove(new SqlParameter("kmr", no_kamar));
+            dcmd.ExecuteNonQuery();
+            Console.WriteLine("Data Berhasil Dihapus");
+        }
     }
 }
 
