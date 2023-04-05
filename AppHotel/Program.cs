@@ -60,13 +60,13 @@ namespace AppHotel
                                                     string nama_pelanggan = Console.ReadLine();
                                                     Console.WriteLine("Masukkan No. Telp :");
                                                     string tlp_pelanggan = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan jenis kelamin (L/P) :");
-                                                    string jk = Console.ReadLine();
                                                     Console.WriteLine("Masukkan No. Kamar :");
                                                     string no_kamar = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan jenis kelamin (L/P) :");
+                                                    string jenis_kelamin = Console.ReadLine();
                                                     try
                                                     {
-                                                        PR.insert(id_pelanggan, nama_pelanggan, tlp_pelanggan, jk, no_kamar, conn);
+                                                        PR.insert(id_pelanggan, nama_pelanggan, tlp_pelanggan, jenis_kelamin, no_kamar, conn);
                                                         conn.Close();
                                                     }
                                                     catch
@@ -85,13 +85,13 @@ namespace AppHotel
                                                     string nama_pelanggan = Console.ReadLine();
                                                     Console.WriteLine("Masukkan No. Telp :");
                                                     string tlp_pelanggan = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan jenis kelamin (L/P) :");
-                                                    string jk = Console.ReadLine();
                                                     Console.WriteLine("Masukkan No. Kamar :");
                                                     string no_kamar = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan jenis kelamin (L/P) :");
+                                                    string jenis_kelamin = Console.ReadLine();
                                                     try
                                                     {
-                                                        PR.insert(id_pelanggan, nama_pelanggan, tlp_pelanggan, jk, no_kamar, conn);
+                                                        PR.insert(id_pelanggan, nama_pelanggan, tlp_pelanggan, jenis_kelamin, no_kamar, conn);
                                                         conn.Close();
                                                     }
                                                     catch
@@ -110,13 +110,13 @@ namespace AppHotel
                                                     string nama_pelanggan = Console.ReadLine();
                                                     Console.WriteLine("Masukkan No. Telp :");
                                                     string tlp_pelanggan = Console.ReadLine();
-                                                    Console.WriteLine("Masukkan jenis kelamin (L/P) :");
-                                                    string jk = Console.ReadLine();
                                                     Console.WriteLine("Masukkan No. Kamar :");
                                                     string no_kamar = Console.ReadLine();
+                                                    Console.WriteLine("Masukkan jenis kelamin (L/P) :");
+                                                    string jenis_kelamin = Console.ReadLine();
                                                     try
                                                     {
-                                                        PR.delete(id_pelanggan, nama_pelanggan, tlp_pelanggan, jk, no_kamar, conn);
+                                                        PR.delete(id_pelanggan, nama_pelanggan, tlp_pelanggan, jenis_kelamin, no_kamar, conn);
                                                         conn.Close();
                                                     }
                                                     catch
@@ -159,39 +159,39 @@ namespace AppHotel
             }
         }
 
-        public void delete(string id_pelanggan, string nama_pelanggan, string tlp_pelanggan, string jk, string no_kamar,
+        public void delete(string id_pelanggan, string nama_pelanggan, string tlp_pelanggan, string jenis_kelamin, string no_kamar,
             SqlConnection con)
         {
             SqlCommand cmd = new SqlCommand("Delete * From pelanggan", con);
             string str = "";
-            str = "insert into pelanggan (id_pelanggan,nama_pelanggan,tlp_pelanggan,jenis_kelamin,no_kamar)"
-                + "values(@id,@nma,@tlp,@jk,@kmr)";
+            str = "delete*from pelanggan (id_pelanggan,nama_pelanggan,tlp_pelanggan,no_kamar,jenis_kelamin)"
+                + "values(@id,@nma,@tlp,@kmr,@jk)";
             SqlCommand dcmd = new SqlCommand(str, con);
             dcmd.CommandType = CommandType.Text;
 
             dcmd.Parameters.Remove(new SqlParameter("id", id_pelanggan));
             dcmd.Parameters.Remove(new SqlParameter("nma", nama_pelanggan));
             dcmd.Parameters.Remove(new SqlParameter("tlp", tlp_pelanggan));
-            dcmd.Parameters.Remove(new SqlParameter("jk", jk));
             dcmd.Parameters.Remove(new SqlParameter("kmr", no_kamar));
+            dcmd.Parameters.Remove(new SqlParameter("jk", jenis_kelamin));
             dcmd.ExecuteNonQuery();
             Console.WriteLine("Data Berhasil Dihapus");
         }
 
-        public void insert(string id_pelanggan, string nama_pelanggan, string tlp_pelanggan, string jk, string no_kamar,
+        public void insert(string id_pelanggan, string nama_pelanggan, string tlp_pelanggan, string jenis_kelamin, string no_kamar,
             SqlConnection con)
         {
             string str = "";
-            str = "insert into pelanggan (id_pelanggan,nama_pelanggan,tlp_pelanggan,jenis_kelamin,no_kamar)"
-                + "values(@id,@nma,@tlp,@jk,@kmr)";
+            str = "insert into pelanggan (id_pelanggan,nama_pelanggan,tlp_pelanggan,no_kamar,jenis_kelamin)"
+                + "values(@id,@nma,@tlp,@kmr,@jk)";
             SqlCommand cmd = new SqlCommand(str, con);
             cmd.CommandType = CommandType.Text;
 
             cmd.Parameters.Add(new SqlParameter("id", id_pelanggan));
             cmd.Parameters.Add(new SqlParameter("nma", nama_pelanggan));
             cmd.Parameters.Add(new SqlParameter("tlp", tlp_pelanggan));
-            cmd.Parameters.Add(new SqlParameter("jk", jk));
             cmd.Parameters.Add(new SqlParameter("kmr", no_kamar));
+            cmd.Parameters.Add(new SqlParameter("jk", jenis_kelamin));
             cmd.ExecuteNonQuery();
             Console.WriteLine("Data Berhasil Ditambahkan");
         }
